@@ -48,7 +48,8 @@ You're reading it!
 I tried with RGB, HSV and YCrCb color spaces and finally used YCrCb color space for HOG as well as other features extraction. The function to compute HOG i.e. `get_hog_features()` is written in Cell 4 of my Jupter Notebook along with other functions like `bin_spatial()` and `color_hist()`. Its visualization is displayed in Cell 7 of the notebook.  
 
 The HOG feature is using following parameters:
-|Feature |Value |
+
+|Feature | Value |
 |---|---|
 | orient | 9 |
 | pix_per_cell | 8 |
