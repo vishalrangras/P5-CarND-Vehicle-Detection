@@ -45,14 +45,16 @@ You're reading it!
 
 #### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
-The function to compute HOG i.e. `get_hog_features()` is written in Cell 4 of my Jupter Notebook along with other functions like `bin_spatial()` and `color_hist()`. Its visualization is displayed in Cell 7 of the notebook.  
+I tried with RGB, HSV and YCrCb color spaces and finally used YCrCb color space for HOG as well as other features extraction. The function to compute HOG i.e. `get_hog_features()` is written in Cell 4 of my Jupter Notebook along with other functions like `bin_spatial()` and `color_hist()`. Its visualization is displayed in Cell 7 of the notebook.  
+
 The HOG feature is using following parameters:
-| | |
+|Feature |Value |
+|---|---|
 | orient | 9 |
 | pix_per_cell | 8 |
 | cell_per_block | 2 |
 
-Please refer to the notebook for visualization of HOG and other features.
+
 
 Earlier I just used KITTI dataset for the training purposes and feature extraction. The output I received due to this was such that only back portion of the car was detected but the side portions were not detected by my classifier. I believe the reason behind this is because KITTI dataset contains all the images from the single perspective angle i.e. back.
 
