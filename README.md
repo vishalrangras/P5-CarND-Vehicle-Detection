@@ -89,7 +89,15 @@ I tried various values for HOG parameters and all the changes directly impacted 
 
 ![alt text][image8]
 
+<h4 align="center">
+Histogram of All channels in YCrCb Color Space
+<h4>
+
 ![alt text][image9]
+
+<h4 align="center">
+Histogram of All channels in HSV Color Space
+<h4>
 
 I was able to reduce the training time by increasing value of orient and reducing hist_bin and spatial_size values. This also showed a good training accuracy but the classifier was not giving satisfying results and finally I ended up using the HOG parameters similar to Udacity's Classroom content itself.
 
@@ -111,7 +119,15 @@ Here are two sets of values for `Sliding Experiment` among all the values:
 
 ![alt text][image10]
 
+<h4 align="center">
+64 x 64 window size and 0.8 overlap
+<h4>
+
 ![alt text][image11]
+
+<h4 align="center">
+96 x 96 window size and 0.9 overlap
+<h4>
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
