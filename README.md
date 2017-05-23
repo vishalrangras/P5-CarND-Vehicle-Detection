@@ -4,7 +4,7 @@
 
 ## Attributions
 
-1. I would like to give credits to Rana Khalil's work which gave understanding about importance of overlapping windows and window size. I have experimented with different values for these two parameters and ultimately used the values similar to Rana Khalil's work for my final video processing.
+1. I would like to give credits to Rana Khalil's work which gave me a good understanding about importance of overlapping windows and window size. I have experimented with different values for these two parameters and ultimately used the values similar to Rana Khalil's work for my final video processing.
 
 2. I would also like to give credits to forum mentor Subodh Malgonde for helping me to resolve the black screen output in final processed Video. As it turned out, my processing pipeline was processing the image in the range of 0 - 1 due to which the final output was of complete black screen with only boxes in the location of car. I was not able to figure out the solution to this as my pipeline was working fine on single still image but was not producing correct output for video. So I asked the question on Discussion Forum and slack channel. Ultimately Forum Mentor Subodh Malgonde recommended me to have a copy of original image and to do all the processing on the copy, while using the original image for final plotting of results. This ensured the satisfactory result.
 
@@ -29,6 +29,17 @@ The goals / steps of this project are the following:
 [image1]: ./test_images/test4.jpg
 [image2]: ./final_window_img.jpg
 [image3]: ./final_draw_img.jpg
+[image4]: ./output_images/data_look.jpg
+[image5]: ./output_images/spatial_binning.jpg
+[image6]: ./output_images/YCrCb_color_hist.jpg
+[image7]: ./output_images/HOG_visualization.jpg
+[image8]: ./HOG_Features/010-All_Channels_of_YCrCb.jpg
+[image9]: ./HOG_Features/004-All_Channels_of_HSV.jpg
+[image10]: ./Sliding_Experiment/window_img_64_0.8_SVM_Change_3_F.jpg
+[image11]: ./Sliding_Experiment/window_img_96_0.9.jpg
+[image12]: ./output_images/HSV_color_hist.jpg
+[image13]: ./output_images/raw_and_normalized_features.jpg
+
 [video1]: ./project_video_processed.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
@@ -45,25 +56,40 @@ You're reading it!
 
 #### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
-I tried with RGB, HSV and YCrCb color spaces and finally used YCrCb color space for HOG as well as other features extraction. The function to compute HOG i.e. `get_hog_features()` is written in Cell 4 of my Jupter Notebook along with other functions like `bin_spatial()` and `color_hist()`. Its visualization is displayed in Cell 7 of the notebook.  
+Before we get started about HOG and other features of images, let us have a look at the training dataset which we are using for this project. The dataset consist of vehicle and non-vehicle images and a sample of this is shown below:
 
+![alt text][image4]
+
+The function to compute HOG i.e. `get_hog_features()` is written in Cell 4 of my Jupyter Notebook along with other functions like `bin_spatial()` and `color_hist()`. Its visualization is displayed in Cell 7 of the notebook.  
 The HOG feature is using following parameters:
-
-|Feature | Value |
-|---|---|
+| | |
 | orient | 9 |
 | pix_per_cell | 8 |
 | cell_per_block | 2 |
 
+I have also used Spatial binning and Color Histogram along with HOG for feature extraction. The following figures illustrates the various features extracted from the input images:
 
+![alt text][image5]
 
-Earlier I just used KITTI dataset for the training purposes and feature extraction. The output I received due to this was such that only back portion of the car was detected but the side portions were not detected by my classifier. I believe the reason behind this is because KITTI dataset contains all the images from the single perspective angle i.e. back.
+![alt text][image6]
+
+![alt text][image12]
+
+![alt text][image7]
+
+![alt text][image13]
+
+In earlier iterations of my project, being lazy I just used KITTI dataset for the training purposes and feature extraction. Classifier trained only on KITTI dataset worked fine on single image. However, the output I received due to this was such that only back portion of the car was detected but the side portions were not detected by my classifier. I believe the reason behind this is because KITTI dataset contains all the images from the single perspective angle i.e. back.
 
 Then I used all the available images of GTI dataset along with KITTI dataset which lead to a better accuracy and improved vehicle detection.
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
-I tried various values for HOG parameters and all the changes directly impacted the feature vector length along with change in time required to train SVM Classifier and its accuracy. All the results are placed in **"HOG_Features"** directory for the reference.
+I tried various values for HOG parameters and all the changes directly impacted the feature vector length along with change in time required to train SVM Classifier and its accuracy. All the results are placed in **"HOG_Features"** directory for the reference. Here are two different value sets shown for among the all tested values:
+
+![alt text][image8]
+
+![alt text][image9]
 
 I was able to reduce the training time by increasing value of orient and reducing hist_bin and spatial_size values. This also showed a good training accuracy but the classifier was not giving satisfying results and finally I ended up using the HOG parameters similar to Udacity's Classroom content itself.
 
@@ -80,6 +106,12 @@ My SVM classifier got trained in 217.8 seconds on a normal I3 processor with 8 G
 The code related to Sliding Window search is located in Cell 13 designated as **"Car Search"**. The parameters for sliding window size and overlap are located in Cell 14 along with the code to actually search the cars in an image and draw the boxes on the image as per the search result.
 
 I tried so many different values of xy_window and xy_overlap along with different 3 different feature vectors. The various results are stored in **Sliding_Experiment** directory. Finally I got the best result from Rana Khalil's work for these parameters like I mentioned above in the attribution. The final values which I used are: xy_overlap = (0.8, 0.8) and xy_window = (80,80)
+
+Here are two sets of values for `Sliding Experiment` among all the values:
+
+![alt text][image10]
+
+![alt text][image11]
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
@@ -102,7 +134,6 @@ Here are the images showing working of pipeline.
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
 
 Here's a [link to my video result](./project_video_processed.mp4)
-
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
