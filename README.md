@@ -34,7 +34,7 @@ The goals / steps of this project are the following:
 [image6]: ./output_images/YCrCb_color_hist.jpg
 [image7]: ./output_images/HOG_visualization.jpg
 [image8]: ./HOG_Features/010-All_Channels_of_YCrCb.JPG
-[image9]: ./HOG_Features/004-All_Channels_of_HSV.JPG
+[image9]: ./HOG_Features/011-HSV_ALL_21_16_4.JPG
 [image10]: ./Sliding_Experiment/window_img_64_0.8_SVM_Change_3_F.jpg
 [image11]: ./Sliding_Experiment/window_img_96_0.9.jpg
 [image12]: ./output_images/HSV_color_hist.jpg
