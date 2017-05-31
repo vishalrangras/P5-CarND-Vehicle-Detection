@@ -2,6 +2,8 @@
 
 **Submitted by: Vishal Rangras**
 
+Click here for *[Advanced Lane Finding Project](https://github.com/vishalrangras/P4-CarND-Advanced-Lane-Finding)*
+
 ## Attributions
 
 1. I would like to give credits to Rana Khalil's work which gave me a good understanding about importance of overlapping windows and window size. I have experimented with different values for these two parameters and ultimately used the values similar to Rana Khalil's work for my final video processing.
